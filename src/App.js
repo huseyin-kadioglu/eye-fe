@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import TransactionView from "./components/TransactionView";
+import DefaultContainer from "./components/DefaultContainer";
+import PortfolioInputView from "./components/PortfolioInputView";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <DefaultContainer>
+            <p>EYE, the portfolio tracker!</p>
+
+            <PortfolioInputView/>
+            <TransactionView/>
+        </DefaultContainer>
+    );
 }
 
 export default App;
