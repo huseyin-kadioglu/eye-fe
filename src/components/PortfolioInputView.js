@@ -1,36 +1,52 @@
-import {Button} from "@mui/material";
 import TransactionService from "../service/TransactionService";
+import {useState} from "react";
 
-const PortfolioInputView = (props) => {
+const PortfolioInputView = ({setRefresh}) => {
 
-    function handleSubmit(e) {
-        // Prevent the browser from reloading the page
-        e.preventDefault();
 
-        const formData = new FormData(e.target);
-        const formProps = Object.fromEntries(formData);
+    const [code, setCode] = useState(null);
+    const [share, setShare] = useState(null);
+    const [cost, setCost] = useState(null);
+    const [side, setSide] = useState(null);
 
-       TransactionService.createTransaction(formProps);
+    const onClickHandler = () => {
+
+        let params = {};
+        params.code = code;
+        params.share = share;
+        params.cost = cost;
+        params.side = side;
+
+
+        TransactionService.createTransaction(params).then(setRefresh(true)).catch(e => console.log(e));
+    };
+
+    const clearInputs = () => {
+        setCode(null);
+        setShare(null);
+        setSide(null);
+        setCost(null);
     }
 
+    const toNumber = (str) => parseInt(str);
 
     return (
-        <form method="post" onSubmit={handleSubmit}>
+        <div style={{display: "inline-block"}}>
             <label>
-                Hisse Kodu: <input name="code"/>
+                Hisse Kodu: <input name="code" onChange={e => setCode(e.target.value)}/>
             </label>
             <label>
-                Adet: <input name="code"/>
+                Adet: <input name="share" onChange={e => setShare(toNumber(e.target.value))}/>
             </label>
             <label>
-                ALIŞ: <input type="checkbox" name="side" defaultChecked={true}/>
+                ALIŞ: <input type="checkbox" name="side" onChange={e => setSide(e.target.value)} defaultChecked={true}/>
             </label>
             <label>
-                Maliyet: <input name="cost"/>
+                Maliyet: <input name="cost" onChange={e => setCost(toNumber(e.target.value))}/>
             </label>
-            <button type="reset">TEMİZLE</button>
-            <button type="submit">EKLE</button>
-        </form>
+            <button onClick={clearInputs}>TEMİZLE</button>
+            <button onClick={onClickHandler}>EKLE</button>
+        </div>
     );
 };
 export default PortfolioInputView;

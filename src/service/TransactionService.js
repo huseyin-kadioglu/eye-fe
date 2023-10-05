@@ -6,9 +6,9 @@ class TransactionService {
         return axios.get("http://localhost:8080/transactions");
     }
 
-    static createTransaction(params) {
-        params.side = params.side === "on"  ? "BUY" : "SELL";
-        return axios.post("http://localhost:8080/transactions", params);
+    static async createTransaction(params) {
+        params.side = params.side === "on" ? "BUY" : "SELL";
+        await axios.post("http://localhost:8080/transactions", params);
     }
 }
 
