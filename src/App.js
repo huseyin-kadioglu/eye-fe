@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import {useEffect, useState} from 'react';
+import TransactionView from "./components/TransactionView";
+import DefaultContainer from "./components/DefaultContainer";
+import PortfolioInputView from "./components/PortfolioInputView";
+import TransactionService from "./service/TransactionService";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [transactions, setTransactions] = useState([]);
+    const [refreshPage, setRefresh] = useState(false);
+
+    useEffect(() => {
+        TransactionService.getTransactions().then(response => setTransactions(response.data));
+        setRefresh(false);
+    }, [refreshPage]);
+
+    return (
+        <DefaultContainer>
+            <p>EYE, the portfolio tracker!</p>
+
+            <PortfolioInputView setRefresh={setRefresh}/>
+            <TransactionView transactions={transactions}/>
+        </DefaultContainer>
+    );
 }
 
 export default App;
