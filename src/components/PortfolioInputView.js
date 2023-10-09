@@ -17,8 +17,9 @@ const PortfolioInputView = ({setRefresh}) => {
         params.cost = cost;
         params.side = side;
 
-
-        TransactionService.createTransaction(params).then(setRefresh(true)).catch(e => console.log(e));
+        TransactionService.createTransaction(params)
+            .then(() => setRefresh(true))
+            .catch(e => console.log(e));
     };
 
     const clearInputs = () => {
