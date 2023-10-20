@@ -7,7 +7,7 @@ const PortfolioInputView = ({setRefresh}) => {
     const [code, setCode] = useState(null);
     const [share, setShare] = useState(null);
     const [cost, setCost] = useState(null);
-    const [side, setSide] = useState(null);
+    const [side, setSide] = useState("BUY");
 
     const onClickHandler = () => {
 
@@ -40,7 +40,10 @@ const PortfolioInputView = ({setRefresh}) => {
                 Adet: <input name="share" onChange={e => setShare(toNumber(e.target.value))}/>
             </label>
             <label>
-                ALIŞ: <input type="checkbox" name="side" onChange={e => setSide(e.target.value)} defaultChecked={true}/>
+                <select name="İşlem Yönü" onChange={e => setSide(e.target.value)}>
+                    <option value="BUY">Alış</option>
+                    <option value="SELL">Satış</option>
+                </select>
             </label>
             <label>
                 Maliyet: <input name="cost" onChange={e => setCost(toNumber(e.target.value))}/>
