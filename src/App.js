@@ -22,8 +22,7 @@ function App() {
 
     return (
         <DefaultContainer>
-            <p>EYE, the portfolio tracker!</p>
-
+            <p style={{textAlign: "center"}}>EYE, the portfolio tracker!</p>
             <PortfolioInputView setRefresh={setRefresh}/>
             <TransactionView transactions={transactions}/>
             <PortfolioView portfolios={portfolios}/>

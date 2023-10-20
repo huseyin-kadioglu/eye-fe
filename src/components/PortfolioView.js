@@ -9,9 +9,13 @@ const PortfolioView = ({portfolios}) => {
     ];
 
     return (
-        <DataGrid
-            rows={portfolios}
-            columns={columns}
-        />)
+
+        <>
+            <p style={{textAlign: "center"}}>Portföy</p>
+            <DataGrid
+                rows={portfolios}
+                columns={columns}
+            />
+        </>)
 };
 export default PortfolioView;

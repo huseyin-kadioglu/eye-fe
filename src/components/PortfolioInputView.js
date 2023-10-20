@@ -1,5 +1,6 @@
 import TransactionService from "../service/TransactionService";
 import {useState} from "react";
+import BaseInputView from "../common/BaseInputView";
 
 const PortfolioInputView = ({setRefresh}) => {
 
@@ -32,25 +33,30 @@ const PortfolioInputView = ({setRefresh}) => {
     const toNumber = (str) => parseInt(str);
 
     return (
-        <div style={{display: "inline-block"}}>
-            <label>
-                Hisse Kodu: <input name="code" onChange={e => setCode(e.target.value)}/>
-            </label>
-            <label>
-                Adet: <input name="share" onChange={e => setShare(toNumber(e.target.value))}/>
-            </label>
-            <label>
-                <select name="İşlem Yönü" onChange={e => setSide(e.target.value)}>
-                    <option value="BUY">Alış</option>
-                    <option value="SELL">Satış</option>
-                </select>
-            </label>
-            <label>
-                Maliyet: <input name="cost" onChange={e => setCost(toNumber(e.target.value))}/>
-            </label>
-            <button onClick={clearInputs}>TEMİZLE</button>
-            <button onClick={onClickHandler}>EKLE</button>
-        </div>
+        <BaseInputView>
+            <div>
+                <label>
+                    Hisse Kodu: <input name="code" onChange={e => setCode(e.target.value)}/>
+                </label>
+                <label>
+                    Adet: <input name="share" onChange={e => setShare(toNumber(e.target.value))}/>
+                </label>
+                <label>
+                    <select name="İşlem Yönü" onChange={e => setSide(e.target.value)}>
+                        <option value="BUY">Alış</option>
+                        <option value="SELL">Satış</option>
+                    </select>
+                </label>
+                <label>
+                    Maliyet: <input name="cost" onChange={e => setCost(toNumber(e.target.value))}/>
+                </label>
+            </div>
+            <div>
+                <button onClick={clearInputs}>TEMİZLE</button>
+                <button onClick={onClickHandler}>EKLE</button>
+            </div>
+            <hr/>
+        </BaseInputView>
     );
 };
 export default PortfolioInputView;

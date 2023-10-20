@@ -11,9 +11,13 @@ const TransactionView = ({transactions}) => {
     ];
 
     return (
-        <DataGrid
-            rows={transactions}
-            columns={columns}
-        />)
+        <>
+            <p style={{textAlign: "center"}}>İşlemler</p>
+            <DataGrid
+                rows={transactions}
+                columns={columns}
+            />
+        </>
+    )
 };
 export default TransactionView;
