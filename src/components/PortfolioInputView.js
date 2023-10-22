@@ -4,7 +4,6 @@ import BaseInputView from "../common/BaseInputView";
 
 const PortfolioInputView = ({setRefresh}) => {
 
-
     const [code, setCode] = useState(null);
     const [share, setShare] = useState(null);
     const [cost, setCost] = useState(null);
@@ -21,6 +20,8 @@ const PortfolioInputView = ({setRefresh}) => {
         TransactionService.createTransaction(params)
             .then(() => setRefresh(true))
             .catch(e => console.log(e));
+
+        clearInputs();
     };
 
     const clearInputs = () => {
@@ -28,6 +29,10 @@ const PortfolioInputView = ({setRefresh}) => {
         setShare(null);
         setSide(null);
         setCost(null);
+
+        document.getElementById("code").value = null;
+        document.getElementById("share").value = null;
+        document.getElementById("cost").value = null;
     }
 
     const toNumber = (str) => parseInt(str);
@@ -36,10 +41,10 @@ const PortfolioInputView = ({setRefresh}) => {
         <BaseInputView>
             <div>
                 <label>
-                    Hisse Kodu: <input name="code" onChange={e => setCode(e.target.value)}/>
+                    Hisse Kodu: <input id="code" name="code" onChange={e => setCode(e.target.value)}/>
                 </label>
                 <label>
-                    Adet: <input name="share" onChange={e => setShare(toNumber(e.target.value))}/>
+                    Adet: <input  id="share" name="share" onChange={e => setShare(toNumber(e.target.value))}/>
                 </label>
                 <label>
                     <select name="İşlem Yönü" onChange={e => setSide(e.target.value)}>
@@ -48,7 +53,7 @@ const PortfolioInputView = ({setRefresh}) => {
                     </select>
                 </label>
                 <label>
-                    Maliyet: <input name="cost" onChange={e => setCost(toNumber(e.target.value))}/>
+                    Maliyet: <input id="cost" name="cost" onChange={e => setCost(toNumber(e.target.value))}/>
                 </label>
             </div>
             <div>
