@@ -1,0 +1,16 @@
+.baseInput {
+    margin-bottom: 20px;
+}
+
+
+.baseInput div {
+    display: inline-flex;
+}
+
+.baseInput div button{
+    margin-right: 10px;
+}
+
+.baseInput label {
+    margin-right: 10px;
+}
