@@ -9,6 +9,8 @@ const PortfolioInputView = ({setRefresh}) => {
     const [cost, setCost] = useState(null);
     const [side, setSide] = useState("BUY");
 
+    const addButtonRenderingCondition = code == null || share == null || cost == null;
+
     const onClickHandler = () => {
 
         let params = {};
@@ -44,7 +46,7 @@ const PortfolioInputView = ({setRefresh}) => {
                     Hisse Kodu: <input id="code" name="code" onChange={e => setCode(e.target.value)}/>
                 </label>
                 <label>
-                    Adet: <input  id="share" name="share" onChange={e => setShare(toNumber(e.target.value))}/>
+                    Adet: <input id="share" name="share" onChange={e => setShare(toNumber(e.target.value))}/>
                 </label>
                 <label>
                     <select name="İşlem Yönü" onChange={e => setSide(e.target.value)}>
@@ -58,7 +60,7 @@ const PortfolioInputView = ({setRefresh}) => {
             </div>
             <div>
                 <button onClick={clearInputs}>TEMİZLE</button>
-                <button onClick={onClickHandler}>EKLE</button>
+                <button disabled={addButtonRenderingCondition} onClick={onClickHandler}>EKLE</button>
             </div>
             <hr/>
         </BaseInputView>
